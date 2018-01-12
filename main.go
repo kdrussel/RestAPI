@@ -11,11 +11,36 @@ import(
 
 // Heroes Struct (Model)
 type Hero struct {
-	ID string `json:"id"`
-	Name string `json:"name"`
-	Alias string `json:"alias"`
+	ID 		string `json:"id"`
+	Name 	string `json:"name"`
+	Alias 	string `json:"alias"`
 	Birthday string `json:"birthday"`
 
+}
+
+//Get all heroes
+func getHeroes(w http.ResponseWriter, r *http.Request) {
+
+}
+
+//Get single hero
+func getHero(w http.ResponseWriter, r *http.Request) {
+	
+}
+
+//Create hero
+func createHero(w http.ResponseWriter, r *http.Request) {
+	
+}
+
+//Update hero
+func updateHero(w http.ResponseWriter, r *http.Request) {
+	
+}
+
+//Delete hero
+func deleteHero(w http.ResponseWriter, r *http.Request) {
+	
 }
 
 func main() {
