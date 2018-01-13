@@ -53,12 +53,33 @@ func createHero(w http.ResponseWriter, r *http.Request) {
 
 // Update hero
 func updateHero(w http.ResponseWriter, r *http.Request) {
-	
+	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r)
+	for index, item := range heroes {
+		if item.ID == params["id"] {
+		heroes = append(heroes[:index], heroes[index+1:]...)
+		break
+		}
+	}
+	json.NewEncoder(w).Encode(heroes)
 }
 
 // Delete hero
 func deleteHero(w http.ResponseWriter, r *http.Request) {
-	
+	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r)
+	for index, item := range heroes {
+		if item.ID == params["id"] {
+		heroes = append(heroes[:index], heroes[index+1:]...)
+		var hero Hero
+		_ = json.NewDecoder(r.Body).Decode(&hero)
+		hero.ID = strconv.Itoa(rand.Intn(10000000)) // Mock ID
+		heroes = append(heroes, hero)
+		json.NewEncoder(w).Encode(hero)
+		return
+		}
+	}
+	json.NewEncoder(w).Encode(heroes)
 }
 
 func main() {
